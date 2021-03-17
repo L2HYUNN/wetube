@@ -1,4 +1,4 @@
-import express from "express"; 
+import express from "express";
 import { join, login, logout } from "../controllers/userController";
 import { home, search } from "../controllers/videoController";
 import routes from "../routes";
@@ -12,4 +12,5 @@ globalRouter.get(routes.login, login);
 globalRouter.get(routes.logout, logout);
 
 export default globalRouter;
+
 

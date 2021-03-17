@@ -15,6 +15,7 @@ const app = express();
 //     console.log(`Listening on http://localhost:${PORT}`);
 // }
 
+app.set("view engine", "pug");
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));

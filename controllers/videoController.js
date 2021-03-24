@@ -3,7 +3,7 @@ import Video from "../models/Video";
 
 export const home = async(req, res) => {
     try{
-        const videos = await Video.find({});
+        const videos = await Video.find({}).sort({_id : -1});
         res.render("home", { pageTitle : "Home", videos });
     } catch(error){
         console.log(error);
@@ -35,6 +35,7 @@ export const postUpload = async (req, res) => {
         title,
         description
     });
+    console.log(newVideo);
     res.redirect(routes.videoDetail(newVideo.id));
 };
 
@@ -58,6 +59,7 @@ export const getEditVideo = async(req, res) => {
     try{
         const video = await Video.findById(id);
         res.render("editVideo",{ pageTitle : `Edit ${video.title}`, video});
+        console.log(video);
     } catch(error){
         res.redirect(routes.home);
     }
@@ -70,6 +72,8 @@ export const postEditVideo = async (req, res) => {
       body: { title, description }
     } = req;
     try {
+        const video = await Video.findById(id);
+        console.log(video);
       await Video.findOneAndUpdate({ _id: id }, { title, description });
       res.redirect(routes.videoDetail(id));
     } catch (error) {

@@ -1,7 +1,7 @@
 import "./db";
 import dotenv from "dotenv";
-import app from "./app";
 dotenv.config();
+import app from "./app";
 import "./models/Video";
 import "./models/Comment";
 import "./models/User";

@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser"; 
 import passport from "passport";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import { localsMiddleware } from "./middlewares";
 import routes from "./routes"; 
 import userRouter from "./routers/userRouter";
@@ -37,10 +38,14 @@ app.use(morgan("dev"));
     //     res.setHeader("Content-Security-Policy", "script-src 'self' https://archive.org");
     //     return next();
     //     });
+    
 app.use(session({
     secret: process.env.COOKIE_SECRET,
     resave: true,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URL
+    })
 }));
 app.use(passport.initialize());
 app.use(passport.session());

@@ -108,7 +108,7 @@ export const userDetail = async (req, res) => {
         params : { id }
     } = req;
     try{
-        const user = await User.findById(id);
+        const user = await User.findById(id).populate("videos");
         res.render("userDetail", { pageTitle : "User Detail", user });
     } catch(error) {
         res.redirect(routes.home);
@@ -136,7 +136,7 @@ export const postEditProfile = async (req, res) => {
 
 export const getChangePassword = (req, res) => 
     res.render("changePassword", { pageTitle : "Change Password"});
-    
+
 export const postChangePassword = async (req, res) => {
   const {
     body: { oldPassword, newPassword, newPassword1 }

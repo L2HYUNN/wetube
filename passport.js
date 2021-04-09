@@ -22,7 +22,7 @@ passport.use(
     clientID: process.env.FB_ID,
     clientSecret: process.env.FB_SECRET,
     // callbackURL: `http://localhost:4000${routes.facebookCallback}`
-    callbackURL: `https://jolly-squid-44.serverless.social${routes.facebookCallback}`,
+    callbackURL: `https://c13d5e9f74c2.ngrok.io${routes.facebookCallback}`,
     profileFields: ['id', 'displayName', 'photos', 'email'],
     scope: ['public_profile', "email"]
     },

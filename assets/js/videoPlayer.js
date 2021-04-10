@@ -97,7 +97,6 @@ function setTotalTime() {
 function handleEnded() {
     videoPlayer.currentTime = 0;
     playBtn.innerHTML = '<i class="fas fa-play"></i>';
-
 }
 
 function handleDrag(event) {

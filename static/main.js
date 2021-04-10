@@ -156,15 +156,29 @@ var recorderContainer = document.getElementById("jsRecordContainer");
 var recordBtn = document.getElementById("jsRecordBtn");
 var videoPreview = document.getElementById("jsVideoPreview");
 var streamObject;
+var videoRecorder;
 
 var handleVideoData = function handleVideoData(event) {
-  console.log(event);
+  var videoFile = event.data.videoFile;
+  var link = document.createElement("a");
+  link.href = URL.createObjectURL(videoFile);
+  link.download = "recorded.webm";
+  document.body.appendChild(link);
+  link.click();
+};
+
+var stopRecording = function stopRecording() {
+  videoRecorder.stop();
+  recordBtn.removeEventListener("click", stopRecording);
+  recordBtn.addEventListener("click", getVideo);
+  recordBtn.innerHTML = "Start Recording";
 };
 
 var startRecording = function startRecording() {
-  var videoRecorder = new MediaRecorder(streamObject);
-  videoRecorder.ondataavailable = handleVideoData;
+  videoRecorder = new MediaRecorder(streamObject);
   videoRecorder.start();
+  videoRecorder.addEventListener("dataavailable", handleVideoData);
+  recordBtn.addEventListener("click", stopRecording);
 };
 
 var getVideo = /*#__PURE__*/function () {

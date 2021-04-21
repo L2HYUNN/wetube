@@ -254,7 +254,8 @@ var streamObject;
 var videoRecorder;
 
 var handleVideoData = function handleVideoData(event) {
-  var videoFile = event.data.videoFile;
+  var videoFile = event.data;
+  console.log(videoFile);
   var link = document.createElement("a");
   link.href = URL.createObjectURL(videoFile);
   link.download = "recorded.webm";

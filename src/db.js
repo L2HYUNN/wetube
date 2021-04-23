@@ -5,7 +5,7 @@ dotenv.config();
 
 
 mongoose.connect(
-    process.env.PRODCTION ? process.env.MONGO_ALTAS_URL : process.env.MONGO_URL
+    process.env.PRODCTION ? process.env.MONGO_ALTAS_URL : process.env.MONGO_URL,
     {
     useNewUrlParser: true,
     useFindAndModify: false,

@@ -5,6 +5,8 @@ import { facebookLoginCallback, githubLoginCallback } from "./controllers/userCo
 import User from "./models/User";
 import routes from "./routes";
 
+const URL = process.env.PRODUCTION ? "https://protected-woodland-11137.herokuapp.com" : "http://localhost:4000";
+
 
 passport.use(User.createStrategy());
 
@@ -12,7 +14,7 @@ passport.use(
     new GithubStrategy({
     clientID: process.env.GH_ID,
     clientSecret: process.env.GH_SECRET,
-    callbackURL: `http://localhost:4000${routes.githubCallback}`
+    callbackURL: `${URL}${routes.githubCallback}`
     },
     githubLoginCallback
     )
